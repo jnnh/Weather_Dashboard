@@ -11,28 +11,30 @@
 
 <body>
   <header>
-      <h1 class="title">Weather Dashboard</h1>
+    <h1 class="title">Weather Dashboard</h1>
   </header>
   <main>
-      <div class="flex-container">
-        <div class="search-column">
-            <form class="city-search" id="city-search">
-              <h2 class="subtitle">Search for a City:</h2>
-              <input type="text" placeholder="City Name" name="cityname" id="cityname" class="form-input" />
-              <button type= "submit" class= "btn search-button" >Search</button>
-            </form>
-            <div class="savedCities" id="savedCities"></div>
-        </div>
-        <div class="weather">
-            <section class="todaysWeather" id="todaysWeather">Search for a city to see the current weather in the city.</section>
-            <section>
-                <h3>5-Day Forecast:</h3>
-                <div class="forecast flex-container"id="forecast"></div>
-            </section>
-        </div>
+    <div class="flex-container">
+      <div class="search-column">
+        <form class="city-search" id="city-search">
+          <h2 class="subtitle">Search for a City:</h2>
+          <input type="text" placeholder="City Name" name="cityname" id="cityname" class="form-input" />
+          <button type="submit" class="btn search-button">Search</button>
+        </form>
+        <div class="savedCities" id="savedCities"></div>
       </div>
-    
-  
+      <div class="weather">
+          <section class="todaysWeather" id="todaysWeather">
+            <div id=heading>Search for a city to see the current weather in that city.</div>
+          </section>
+        <section>
+          <h3 class="subheading">5-Day Forecast:</h3>
+          <div class="forecast flex-container" id="forecast">Search for a city to see the 5-day forecast for that city.</div>
+        </section>
+      </div>
+    </div>
+
+
   </main>
   <script src="./assets/js/script.js"></script>
 </body>
