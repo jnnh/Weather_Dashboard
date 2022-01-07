@@ -52,6 +52,8 @@ var getWeather = function(cityObject) {
  };
 
  var displayWeather = function(weatherObject, cityName){
+     //Display Current Weather//
+     todaysWeatherEl.textContent="";
      var date =convertTimeStamp(weatherObject.current.dt);
      var icon = weatherObject.current.weather[0].icon;
      var temp = weatherObject.current.temp;
@@ -61,16 +63,41 @@ var getWeather = function(cityObject) {
      var currentCity=document.createElement("h2");
      var infoEl=document.createElement("div");
      infoEl.className="infoList"
-     infoEl.innerHTML="<p>Temp: "+ temp +" \xB0C</p><p>Wind: " +wind+ " MPH<p>Humidity: "+ humidity +" %</p><p>UV index: " + uvindex +"</p>"
+     infoEl.innerHTML="<p>Temp: "+ temp +" \xB0C</p><p>Wind: " +wind+ " MPH<p>Humidity: "+ humidity +" %</p><p>UV index: " + uvindex +"</p>";
      currentCity.textContent= cityName + " ("+ date + ")";
      currentCity.className="subtitle";
      var iconSymbol=document.createElement("img");
-     iconSymbol.innerHTML= "src='http://openweathermap.org/img/wn/"+icon+"@2x.png' alt='"+weatherObject.current.weather[0].description+"'";
+     iconSymbol.setAttribute ("src","http://openweathermap.org/img/wn/"+icon+"@2x.png");
+     iconSymbol.setAttribute ("alt", weatherObject.current.weather[0].description);
      iconSymbol.className= "icon";
      todaysWeatherEl.appendChild(currentCity);
      todaysWeatherEl.appendChild(iconSymbol);
      todaysWeatherEl.appendChild(infoEl);
      console.log(weatherObject);
+
+     //Display Forecast//
+     for (var i=0; i<5; i++){
+        var dailyForecast=document.createElement("div");
+        dailyForecast.className="forecast-card";
+        var date =convertTimeStamp(weatherObject.daily[i].dt);
+        var icon = weatherObject.daily[i].weather[0].icon;
+        var temp = weatherObject.daily[i].temp.day;
+        var wind = weatherObject.daily[i].wind_speed;
+        var humidity= weatherObject.daily[i].humidity;
+     var newDay=document.createElement("h4");
+     newDay.className="dateTitle";
+     newDay.textContent=date;
+     var iconSymbol=document.createElement("img");
+     iconSymbol.setAttribute ("src", "http://openweathermap.org/img/wn/"+icon+"@2x.png")
+     iconSymbol.setAttribute ("alt", weatherObject.daily[i].weather[0].description);
+     iconSymbol.className= "icon";
+     dailyForecast.appendChild(newDay);
+     dailyForecast.appendChild(iconSymbol);
+    // dailyForecast.innerHTML="<p>Temp: "+ temp +" \xB0C</p><p>Wind: " +wind+ " MPH<p>Humidity: "+ humidity +" %</p>";
+        forecastEl.appendChild(dailyForecast);
+     }
+     
+
  }
 
  var convertTimeStamp =function(timeStamp){

@@ -14,6 +14,7 @@
     --lightgrey: rgb(184,184,184);
     --borderradius: .3rem;
     --lightblue: #5A95CF;
+    --weathercard: #2D3E50;
     --shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
 }
 body{
@@ -75,9 +76,23 @@ body{
 .infoList{
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
+    align-content: space-around;
+}
+.icon{
+    max-width: 30%;
 }
 .forecast{
     height: 50%;
+    display:flex;
+    justify-content: space-around;
+}
+.forecast-card{
+    background-color: var(--weathercard);
+    color: var(--white);
+}
+.forecast-card h4{
+    text-align: center;
+}
+.dateTitle{
+    font-size:14px;
 }
