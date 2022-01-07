@@ -6,9 +6,9 @@
 /* Branding Standards */
 :root{
     --mainfont: Helvetica, Arial, sans-serif;
-    --headingsize: 50 px;
-    --subtitlesize: 50 px;
-    --textsize: 12 px;
+    --headingsize: 32px;
+    --subtitlesize: 24px;
+    --textsize: 12px;
     --white: white;
     --black: black;
     --lightgrey: rgb(184,184,184);
