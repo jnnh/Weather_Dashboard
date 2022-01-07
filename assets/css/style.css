@@ -6,7 +6,7 @@
 /* Branding Standards */
 :root{
     --mainfont: Helvetica, Arial, sans-serif;
-    --headingsize: 32 px;
+    --headingsize: 50 px;
     --subtitlesize: 50 px;
     --textsize: 12 px;
     --white: white;
@@ -70,6 +70,7 @@ body{
 }
 .todaysWeather{
     border: 1px solid var(--lightgrey);
+    padding: 5px;
     width:100%;
     height:50%;
 }
@@ -79,7 +80,7 @@ body{
     align-content: space-around;
 }
 .icon{
-    max-width: 30%;
+   display: inline;
 }
 .forecast{
     height: 50%;
