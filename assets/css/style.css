@@ -6,8 +6,8 @@
 /* Branding Standards */
 :root{
     --mainfont: Helvetica, Arial, sans-serif;
-    --headingsize: 32px;
-    --subtitlesize: 24px;
+    --headingsize: 24px;
+    --subtitlesize: 18px;
     --textsize: 12px;
     --white: white;
     --black: black;
@@ -33,16 +33,19 @@ body{
 }
 .subtitle{
     font-size: var(--subtitlesize);
+    display: inline-block;
+    margin-bottom: 10px;
 }
 .flex-container{
     display:flex;
     flex-direction: row;
-    height:100%;
 }
-.citySearch{
-    border-bottom: 2px solid var(--lightgrey);
+.search-column{
     margin:5px 10px;
     width:25%;
+}
+.city-search{
+    border-bottom: 2px solid var(--lightgrey);
 }
 .form-input{
     width:100%;
@@ -60,7 +63,7 @@ body{
     cursor: pointer;
     margin:10px 0px;
 }
-.Search-button{
+.search-button{
     background-color: var(--lightblue);
 }
 .weather{
@@ -78,9 +81,17 @@ body{
     display:flex;
     flex-direction: column;
     align-content: space-around;
+    height:fit-content;
 }
+/* .infoList p{
+    margin: 5px;
+} */
 .icon{
-   display: inline;
+   display: inline-block;
+   vertical-align: middle;
+   height: 30px;
+   margin-bottom: 10px;
+
 }
 .forecast{
     height: 50%;
