@@ -72,6 +72,12 @@ body{
     width:100%;
     height:50%;
 }
+.infoList{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
 .forecast{
     height: 50%;
 }

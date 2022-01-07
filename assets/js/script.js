@@ -35,7 +35,7 @@ var getCoordinates = function(cityName){
 
 var getWeather = function(cityObject) {
     cityName= cityObject[0].name;
-    var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat="+ cityObject[0].lat +"&lon="+cityObject[0].lon +"&exclude=minutely,hourly&appid="+ key;
+    var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat="+ cityObject[0].lat +"&lon="+cityObject[0].lon +"&units=metric&exclude=minutely,hourly&appid="+ key;
     fetch(apiUrl).then(function(response){
         if(response.ok){
          response.json().then(function(data){
@@ -53,10 +53,24 @@ var getWeather = function(cityObject) {
 
  var displayWeather = function(weatherObject, cityName){
      var date =convertTimeStamp(weatherObject.current.dt);
+     var icon = weatherObject.current.weather[0].icon;
+     var temp = weatherObject.current.temp;
+     var wind = weatherObject.current.wind_speed;
+     var humidity= weatherObject.current.humidity;
+     var uvindex= weatherObject.current.uvi;
      var currentCity=document.createElement("h2");
+     var infoEl=document.createElement("div");
+     infoEl.className="infoList"
+     infoEl.innerHTML="<p>Temp: "+ temp +" \xB0C</p><p>Wind: " +wind+ " MPH<p>Humidity: "+ humidity +" %</p><p>UV index: " + uvindex +"</p>"
      currentCity.textContent= cityName + " ("+ date + ")";
      currentCity.className="subtitle";
+     var iconSymbol=document.createElement("img");
+     iconSymbol.innerHTML= "src='http://openweathermap.org/img/wn/"+icon+"@2x.png' alt='"+weatherObject.current.weather[0].description+"'";
+     iconSymbol.className= "icon";
      todaysWeatherEl.appendChild(currentCity);
+     todaysWeatherEl.appendChild(iconSymbol);
+     todaysWeatherEl.appendChild(infoEl);
+     console.log(weatherObject);
  }
 
  var convertTimeStamp =function(timeStamp){
