@@ -43,6 +43,7 @@ var getWeather = function (cityObject) {
             response.json().then(function (data) {
                 displayWeather(data, cityName);
                 displayForecast(data);
+                console.log(data);
                 saveCity(cityName);
             });
         }
@@ -80,8 +81,21 @@ var displayWeather = function (weatherObject, cityName) {
     //Display Content//
     var infoEl = document.createElement("div");
     infoEl.className = "infoList";
-    infoEl.innerHTML = "<p>Temp: " + temp + " \xB0C</p><p>Wind: " + wind + " m/s<p>Humidity: " + humidity + " %</p><p>UV index: " + uvindex + "</p>";
+    infoEl.innerHTML = "<p>Temp: " + temp + " \xB0C</p><p>Wind: " + wind + " m/s<p>Humidity: " + humidity + " %</p><p>UV index: <span id='uv'>" + uvindex + "</span></p>";
     todaysWeatherEl.appendChild(infoEl);
+    var uvBox=document.getElementById("uv");
+    if (uvindex <= 2){
+        uvBox.className = "low";
+    }
+    else if (uvindex > 2 && uvindex <= 5 ){
+        uvBox.className = "moderate";
+    }
+    else if (uvindex > 5 && uvindex <= 7 ){
+        uvBox.className = "high";
+    }
+    else if (uvindex > 7){
+        uvBox.className = "severe";
+    }
 }
 var displayForecast = function (weatherObject) {
     //Clear Forecast//
