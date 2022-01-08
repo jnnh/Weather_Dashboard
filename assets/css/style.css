@@ -91,13 +91,16 @@ body{
     display:flex;
     flex-direction: column;
     align-content: space-between;
-    /* height:100%; */ 
+    height:100%; 
 }
 /* UV index classes */
 .infoList span {
     border: none;
     border-radius: var(--borderradius);
     padding: 5px 20px;
+}
+.infoList p{
+    flex-grow: 1;
 }
 .low{
     background-color: var(--green);
@@ -111,9 +114,6 @@ body{
 }
 .severe{
     background-color: var(--red);
-}
-.infoList p{
-    margin-bottom: 15px;
 }
 .icon{
    display: inline-block;

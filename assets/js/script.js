@@ -6,6 +6,8 @@ var todaysWeatherHeading = document.querySelector("#heading");
 var forecastEl = document.querySelector("#forecast");
 var searchHistory = document.querySelector("#savedCities");
 
+var buttons=[];
+
 var citySubmitHandler = function (event) {
     event.preventDefault();
     var cityname = inputEl.value.trim();
@@ -21,8 +23,10 @@ var citySubmitHandler = function (event) {
 var getCoordinates = function (cityName) {
     var geocodingapiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
     fetch(geocodingapiUrl).then(function (response) {
+        console.log(response);
         if (response.ok) {
             response.json().then(function (data) {
+                console.log(data);
                 getWeather(data);
             });
         }
@@ -43,7 +47,6 @@ var getWeather = function (cityObject) {
             response.json().then(function (data) {
                 displayWeather(data, cityName);
                 displayForecast(data);
-                console.log(data);
                 saveCity(cityName);
             });
         }
@@ -138,6 +141,15 @@ var saveCity = function (cityName) {
         button.setAttribute("id", cityName);
         button.textContent = cityName;
         searchHistory.appendChild(button);
+        //save to local storage//
+        var buttonObj ={
+            className: "btn",
+            type: "submit",
+            id: cityName,
+            textContent: cityName 
+        };
+        buttons.push(buttonObj);
+        saveButtons();
     }
 };
 var searchHistoryHandler = function (event) {
@@ -147,6 +159,7 @@ var searchHistoryHandler = function (event) {
     }
 };
 
+
 var convertTimeStamp = function (timeStamp) {
     var options = { day: "numeric", month: "numeric", year: "numeric" };
     var fullDate = new Date(timeStamp * 1000)
@@ -154,5 +167,21 @@ var convertTimeStamp = function (timeStamp) {
     return date;
 }
 
+var saveButtons = function (){
+    localStorage.setItem("buttons", JSON.stringify(buttons));
+}
+var loadButtons = function (){
+    var savedButtons=localStorage.getItem("buttons");
+    if (savedButtons === null){
+        buttons = [];
+        return false;
+    }
+    savedButtons =JSON.parse(savedButtons);
+    for (var i=0; i<savedButtons.length;i++){
+        saveCity(savedButtons[i].id);
+    }
+};
+
+loadButtons();
 formEl.addEventListener("submit", citySubmitHandler);
 searchHistory.addEventListener("click", searchHistoryHandler);
