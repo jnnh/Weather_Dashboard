@@ -23,9 +23,15 @@ var citySubmitHandler = function (event) {
 var getCoordinates = function (cityName) {
     var geocodingapiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
     fetch(geocodingapiUrl).then(function (response) {
+        console.log(response);
         if (response.ok) {
             response.json().then(function (data) {
+                if (data.length==0){
+                    alert("Error: City Not Found. Please enter a valid city name.");
+                }
+                else{
                 getWeather(data);
+                }
             });
         }
         else {
@@ -117,7 +123,7 @@ var displayForecast = function (weatherObject) {
         newDay.className = "dateTitle";
         newDay.textContent = date;
         var iconSymbol = document.createElement("img");
-        iconSymbol.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png")
+        iconSymbol.setAttribute("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png")
         iconSymbol.setAttribute("alt", weatherObject.daily[i].weather[0].description);
         iconSymbol.className = "icon";
         var content = document.createElement("div")
