@@ -20,10 +20,10 @@ var citySubmitHandler = function (event) {
     }
 }
 
+//use openweather api to find lon & Lat using city name
 var getCoordinates = function (cityName) {
     var geocodingapiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
     fetch(geocodingapiUrl).then(function (response) {
-        console.log(response);
         if (response.ok) {
             response.json().then(function (data) {
                 if (data.length==0){
@@ -42,7 +42,7 @@ var getCoordinates = function (cityName) {
             alert("Unable to connect");
         })
 };
-
+//use lon & lat to get weather object from open weather
 var getWeather = function (cityObject) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityObject[0].lat + "&lon=" + cityObject[0].lon + "&units=metric&exclude=minutely,hourly&appid=" + key;
     fetch(apiUrl).then(function (response) {
@@ -163,8 +163,6 @@ var searchHistoryHandler = function (event) {
         getCoordinates(city);
     }
 };
-
-
 var convertTimeStamp = function (timeStamp) {
     var options = { day: "numeric", month: "numeric", year: "numeric" };
     var fullDate = new Date(timeStamp * 1000)
