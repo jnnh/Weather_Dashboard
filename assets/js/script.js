@@ -21,7 +21,7 @@ var citySubmitHandler = function (event) {
 }
 
 var getCoordinates = function (cityName) {
-    var geocodingapiUrl = " https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
+    var geocodingapiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
     fetch(geocodingapiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -38,7 +38,7 @@ var getCoordinates = function (cityName) {
 };
 
 var getWeather = function (cityObject) {
-    var apiUrl = " https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + cityObject[0].lat + "&lon=" + cityObject[0].lon + "&units=metric&exclude=minutely,hourly&appid=" + key;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityObject[0].lat + "&lon=" + cityObject[0].lon + "&units=metric&exclude=minutely,hourly&appid=" + key;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
