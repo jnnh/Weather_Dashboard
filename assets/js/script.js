@@ -21,12 +21,10 @@ var citySubmitHandler = function (event) {
 }
 
 var getCoordinates = function (cityName) {
-    var geocodingapiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
+    var geocodingapiUrl = " https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + key;
     fetch(geocodingapiUrl).then(function (response) {
-        console.log(response);
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 getWeather(data);
             });
         }
@@ -40,11 +38,11 @@ var getCoordinates = function (cityName) {
 };
 
 var getWeather = function (cityObject) {
-    cityName = cityObject[0].name;
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityObject[0].lat + "&lon=" + cityObject[0].lon + "&units=metric&exclude=minutely,hourly&appid=" + key;
+    var apiUrl = " https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + cityObject[0].lat + "&lon=" + cityObject[0].lon + "&units=metric&exclude=minutely,hourly&appid=" + key;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                cityName = cityObject[0].name;
                 displayWeather(data, cityName);
                 displayForecast(data);
                 saveCity(cityName);
@@ -86,6 +84,7 @@ var displayWeather = function (weatherObject, cityName) {
     infoEl.className = "infoList";
     infoEl.innerHTML = "<p>Temp: " + temp + " \xB0C</p><p>Wind: " + wind + " m/s<p>Humidity: " + humidity + " %</p><p>UV index: <span id='uv'>" + uvindex + "</span></p>";
     todaysWeatherEl.appendChild(infoEl);
+    //UV box Colours//
     var uvBox=document.getElementById("uv");
     if (uvindex <= 2){
         uvBox.className = "low";
